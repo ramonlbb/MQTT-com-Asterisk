@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  asterisk:
+    build: ./asterisk
+    container_name: asterisk
+    ports:
+      - "5060:5060/udp"
+      - "5038:5038"
+      - "8088:8088"
+    volumes:
+      - ./asterisk/configs/sip.conf:/etc/asterisk/sip.conf
+      - ./asterisk/configs/extensions.conf:/etc/asterisk/extensions.conf
+      - ./asterisk/configs/manager.conf:/etc/asterisk/manager.conf
+    networks:
+      - telecom
+
+  mqtt:
+    image: eclipse-mosquitto
+    container_name: mqtt
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - telecom
+
+  mqtt-bridge:
+    build: ./mqtt-bridge
+    container_name: mqtt-bridge
+    depends_on:
+      - mqtt
+      - asterisk
+    networks:
+      - telecom
+
+networks:
+  telecom:
+    driver: bridge
