@@ -53,7 +53,7 @@ projeto-mqtt-asterisk/
 ### 2. Clonar e subir o ambiente
 
 ```bash
-git clone https://github.com/seu-usuario/projeto-mqtt-asterisk.git
+git clone https://github.com/ramonlbb/MQTT-com-Asterisk.git
 cd projeto-mqtt-asterisk
 docker compose up -d
 ```
