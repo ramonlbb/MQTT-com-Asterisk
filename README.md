@@ -1,6 +1,3 @@
-Claro! Aqui está o conteúdo reorganizado e formatado para um `README.md` mais elegante e visualmente agradável no GitHub — mas **sem alterar o conteúdo original** conforme solicitado:
-
-````markdown
 # 📞 Integração Asterisk e MQTT com Docker
 
 Este é um projeto de **prova de conceito** que demonstra como integrar um PABX VoIP Asterisk com um broker MQTT. A solução é totalmente orquestrada com Docker e Docker Compose, garantindo um ambiente de fácil replicação e portabilidade.
@@ -66,7 +63,7 @@ Certifique-se de ter as ferramentas abaixo instaladas:
 Clone este repositório (ou crie manualmente a estrutura de arquivos):
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/ramonlbb/MQTT-com-Asterisk.git
 cd seu-repositorio
 ```
 
