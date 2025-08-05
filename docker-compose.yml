@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  # Serviço do Broker MQTT
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: mosquitto_broker
+    ports:
+      # Expõe a porta do MQTT para o seu computador (host)
+      - "1883:1883"
+    volumes:
+      # Monta o arquivo de configuração do Mosquitto
+      - ./mosquitto/conf:/mosquitto/config
+
+  # Serviço do Asterisk
+  asterisk:
+    # Constrói a imagem a partir do nosso Dockerfile customizado
+    build:
+      context: ./asterisk
+    container_name: asterisk_server
+    ports:
+      # Expõe a porta SIP (UDP)
+      - "5060:5060/udp"
+      # Expõe a porta RTP (UDP) para o áudio da chamada
+      - "10000-10020:10000-10020/udp"
+    depends_on:
+      # Garante que o Mosquitto inicie antes do Asterisk
+      - mosquitto
